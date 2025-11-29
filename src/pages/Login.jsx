@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BgImage from "../assets/images/bgImage.webp";
+import axios from "axios";
 
 const Login = () => {
   const baseUrl = "https://pos-inventory-api.vercel.app";
@@ -11,40 +12,41 @@ const Login = () => {
   const [loginError, setLoginError] = useState("");
 
   const handleLoginSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const res = await fetch(`${baseUrl}/api/v1/auth/login`, {
-        method: "POST",
+  try {
+    const res = await axios.post(
+      `${baseUrl}/api/v1/users/login`,
+      { email, password },
+      {
         headers: {
-          "Content-Type": "application/json",   // FIXED
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password }), // FIXED
-      });
-
-      if (!res.ok) {
-        throw new Error(`Login failed: ${res.status}`);
       }
+    );
 
-      const data = await res.json();
-      const { token, user } = data;   // FIXED
+    const { token, user } = res.data;
 
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("token", token);
+    localStorage.setItem("user", JSON.stringify(user));
 
-      navigate("/manage/dashboard");  // FIXED
-    } catch (error) {
-      console.error("Error during login:", error);
-      setLoginError("Invalid email or password. Please try again."); // FIXED
+    navigate("/manage/dashboard");
+
+  } catch (error) {
+    console.error("Login Error:", error);
+      if (error.response && error.response.data && error.response.data.errors) {
+        setLoginError(error.response.data.errors);
+      }
     }
-  };
+};
+
 
   return (
     <div
       className="flex items-center justify-center overflow-hidden"
       style={{
         backgroundImage: `url(${BgImage})`,
-        backgroundSize: "cover",        // FIXED
+        backgroundSize: "cover",       
         backgroundRepeat: "no-repeat",
         backgroundPosition: "center",
         height: "100vh",
