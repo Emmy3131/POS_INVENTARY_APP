@@ -4,13 +4,34 @@ import emmy from "../assets/images/userq.jpg";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../utilityFunctions/logout";
+import Loader from "./Loader";
 
 
-function Header() {
+function Header({cartCount}) {
   const [isOpen, setIsOpen] = useState(false);
+  const [loading, setLoading] = useState(false)
   const handleDropdown = () => {
     setIsOpen(!isOpen);
   };
+  const user = JSON.parse(localStorage.getItem('user'))
+
+  const navigate = useNavigate();
+  const baseUrl = "https://pos-inventory-api.vercel.app";
+
+  const handleLogout = async () => {
+  try {
+    setLoading(true);
+
+    await logoutUser(navigate); // make sure this returns a Promise
+  } catch (error) {
+    console.error("Logout failed", error);
+  } finally {
+    setLoading(false);
+  }
+};
 
 
   return (
@@ -26,7 +47,7 @@ function Header() {
           <h1>POS</h1>
           <span className="text-green-400 text-md text-[17px]">INVENTERY MACHINE</span>
           <div className="">
-            <p id="welcomeMassage" className="text-sm opacity-50 absolute"></p>
+            <p className="text-sm opacity-50 absolute"></p>
           </div>
         </div>
       </div>
@@ -37,17 +58,17 @@ function Header() {
       </div>
 
       <div className="flex items-center space-x-7">
-
-        <Link to='/cart' className="flex bg-gray-100 p-2 rounded-full gap-1 justify-center items-center">
-
+        
+        <Link to='/manage/cart' className="flex bg-gray-100 p-2 rounded-full gap-1 justify-center items-center">
           <IoCartOutline className="text-gray-600 text-xl cursor-pointer" />
-          <p className="text-blue-950 text-[17px]">0</p>
+          <p className="text-blue-950 text-[17px]">{cartCount}</p>
         </Link>
+
         <div className="relative inline-block text-left">
           {/* Trigger */}
           <span id="profile-btn" className="flex gap-2 items-center cursor-pointer">
-            <img id="userProfilePic" className="w-[30px] h-[30px] rounded-full" src={emmy} alt="user" />
-            <p id="userName">Anyanwu Emmanuel</p>
+            <img id="userProfilePic" className="w-[30px] h-[30px] rounded-full" src={user && user.photo} alt="user" />
+            <p id="userName">{user && user.name}</p>
             <IoIosArrowDown onClick={() => handleDropdown()} />
           </span>
 
@@ -59,8 +80,11 @@ function Header() {
                 <div id="profileLink">
                   <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Profile</span>
                 </div>
-                <div id="loggedOut">
-                  <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Logout</span>
+                <div onClick={handleLogout}>
+                  <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                    Logout
+                    { loading && <Loader size={5} /> }
+                    </span>
                 </div>
               </div>
             </div>

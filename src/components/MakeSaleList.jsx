@@ -1,15 +1,18 @@
-import { allProducts } from "./ProductList";
+
 import MakeSaleCard from "./MaleSaleCard";
 
-const MakeSaleList =()=>{
-  return(
-    <div>
-       <div className="flex gap-7 flex-wrap">
-        {allProducts.map((product, index) => (
-          <MakeSaleCard key={index} {...product} />
-        ))}
-      </div>
+const MakeSaleList = ({ products, cart, actionLoadingId }) => {
+  return (
+    <div className="flex flex-wrap gap-4">
+      {products.map((product) => (
+        <MakeSaleCard
+          key={product._id}
+          product={product}          // ✅ PASS PRODUCT
+          cart={cart}
+          actionLoadingId={actionLoadingId}
+        />
+      ))}
     </div>
-  )
-}
+  );
+};
 export default MakeSaleList

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BgImage from "../assets/images/bgImage.webp";
+import BgImage from "./../../assets/images/bgImage.webp";
 import axios from "axios";
+import Loader from "../../components/Loader";
 
 const Login = () => {
   const baseUrl = "https://pos-inventory-api.vercel.app";
@@ -10,9 +11,12 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
+  const[loading, setLoading] = useState(false);
 
   const handleLoginSubmit = async (e) => {
   e.preventDefault();
+  setLoading(true);
+  setLoginError("");
 
   try {
     const res = await axios.post(
@@ -21,22 +25,31 @@ const Login = () => {
       {
         headers: {
           "Content-Type": "application/json",
+        
         },
       }
     );
 
-    const { token, user } = res.data;
-
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
-
-    navigate("/manage/dashboard");
+    if(res.data.status === 'success'){
+      localStorage.setItem("token", res.data.token);
+      localStorage.setItem("user", JSON.stringify(res.data.data.user));
+      setLoginError("");
+      navigate("/manage/dashboard");
+    }
 
   } catch (error) {
     console.error("Login Error:", error);
-      if (error.response && error.response.data && error.response.data.errors) {
-        setLoginError(error.response.data.errors);
+      if (error.response && error.response.data.message) {
+        setLoginError(error.response.data.message);
       }
+
+      if(error.code === "ERR_NETWORK"){
+        setLoginError("Please check your network connection")
+      }
+   
+      
+    }finally{
+      setLoading(false);
     }
 };
 
@@ -67,7 +80,7 @@ const Login = () => {
 
         <form className="space-y-5" onSubmit={handleLoginSubmit}>
           {loginError && (
-            <p className="text-red-600 text-sm">{loginError}</p>
+            <p className="text-red-600 text-sm text-center">{loginError}</p>
           )}
 
           <div>
@@ -94,15 +107,18 @@ const Login = () => {
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)} // FIXED
-              className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-700 focus:outline-none"
+              className="w-full  px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-green-700 focus:outline-none"
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-green-900 text-white py-3 rounded-lg font-semibold hover:bg-green-800 transition duration-300"
+            disabled={loading}
+            className="w-full bg-green-900 flex items-center justify-center gap-1 text-white py-3 rounded-lg font-semibold hover:bg-green-800 transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Login
+
+           { loading && <Loader size={5} /> }
           </button>
         </form>
 

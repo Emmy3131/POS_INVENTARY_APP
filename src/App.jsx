@@ -8,7 +8,9 @@ import Transactions from "./pages/Transaction";
 import Settings from "./pages/Settings";
 import Cart from "./pages/Cart";
 import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
-import Login from "./pages/Login";
+import Login from "./pages/auth/Login";
+import TransactionDetails from "./pages/TransactionDetails";
+import ProtectedRoute from "./pages/ProtectedRoute";
 
 function App() {
 
@@ -17,13 +19,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
 
-        <Route path='/manage' element={<AuthenticatedLayout />}>
+        <Route path='/manage'
+          element={
+            <ProtectedRoute>
+              < AuthenticatedLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="products" element={<Products />} />
           <Route path='users' element={<Users />} />
           <Route path="makeSale" element={<MakeSale />} />
           <Route path='cart' element={<Cart />} />
           <Route path='transactions' element={<Transactions />} />
+          <Route path='transactions/:transactionId' element={<TransactionDetails />} />
           <Route path='settings' element={<Settings />} />
         </Route>
 
