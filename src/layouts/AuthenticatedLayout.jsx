@@ -18,17 +18,15 @@ const AuthenticatedLayout = () => {
       },
     });
 
-    console.log("🛒 Cart raw response:", res.data);
-
     const items =
       res.data?.data?.items ||
       res.data?.data?.cart?.items ||
       [];
 
     setCartCount(items.length);
-    console.log("🛒 Cart count updated:", items.length);
+    console.log(" Cart count updated:", items.length);
   } catch (error) {
-    console.warn("⚠️ Cart does not exist yet, defaulting to 0");
+    console.warn(" Cart does not exist yet, defaulting to 0");
     setCartCount(0);
   }
 };
