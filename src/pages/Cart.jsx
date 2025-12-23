@@ -19,12 +19,12 @@ const Cart = () => {
   const [orderSummary, setOrderSummary] = useState(false)
   const [paymentMethod, setPaymentMethod] = useState("")
   const [customerName, setCustomerName] = useState('')
-  const[amountPaid, setAmountPaid] = useState(null)
+  const [amountPaid, setAmountPaid] = useState(null)
 
 
   const handlePaymentMethodChange = (e) => {
     setPaymentMethod(e.target.value);
-    
+
   };
 
   const handlePaymentSubmit = async (e) => {
@@ -158,6 +158,7 @@ const Cart = () => {
 
   const handleClearCart = async () => {
     try {
+      setIsLoading(true)
       const res = await axios.delete(
         `${baseUrl}/api/v1/cart/${cartId}/clear`,
         {
@@ -173,6 +174,8 @@ const Cart = () => {
       }
     } catch (error) {
       console.error("Error clearing cart:", error);
+    }finally{
+      setIsLoading(false)
     }
   };
 
@@ -256,6 +259,19 @@ const Cart = () => {
                 </div>
               </div>
             ))}
+
+            <div>
+              <button
+                disabled={isLoading}
+                onClick={handleClearCart}
+                className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 text-red-600font-semibold hover:bg-red-200 active:scale-95 transition shadow-sm"
+              >
+                Clear Cart
+                {isLoading &&<Loader size={5}/>}
+              </button>
+
+            </div>
+
           </div>
 
           {/* ORDER SUMMARY */}
@@ -401,7 +417,7 @@ const Cart = () => {
 
               />
 
-              
+
 
               {
                 paymentMethod === 'cash' &&
@@ -410,8 +426,8 @@ const Cart = () => {
                   name="amount"
                   type="number"
                   value={amountPaid}
-                  onChange={(e=>  setAmountPaid(e.target.value))}
-                 
+                  onChange={(e => setAmountPaid(e.target.value))}
+
                 />
               }
 

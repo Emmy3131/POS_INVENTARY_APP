@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { FaCreditCard, FaArrowAltCircleRight } from "react-icons/fa";
+import { FaCreditCard, FaArrowAltCircleLeft } from "react-icons/fa";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Loader from "../components/Loader";
@@ -56,7 +56,7 @@ const TransactionDetails = () => {
         </h1>
 
         <span onClick={() => navigate("/manage/transactions")}>
-          <FaArrowAltCircleRight />
+          <FaArrowAltCircleLeft />
         </span>
       </div>
 

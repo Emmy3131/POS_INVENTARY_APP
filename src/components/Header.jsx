@@ -77,9 +77,9 @@ function Header({cartCount}) {
             <div id="dropdown-menu"
               className=" absolute text-center right-[5px]  mt-[10px] w-30 bg-white rounded-lg shadow-lg border-0">
               <div className="py-2">
-                <div id="profileLink">
+                <Link to= "/manage/settings" id="profileLink">
                   <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Profile</span>
-                </div>
+                </Link>
                 <div onClick={handleLogout}>
                   <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
                     Logout
