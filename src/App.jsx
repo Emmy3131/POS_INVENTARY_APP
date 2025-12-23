@@ -11,6 +11,7 @@ import AuthenticatedLayout from "./layouts/AuthenticatedLayout";
 import Login from "./pages/auth/Login";
 import TransactionDetails from "./pages/TransactionDetails";
 import ProtectedRoute from "./pages/ProtectedRoute";
+import TransactionReceipt from "./pages/TransactionReceipt";
 
 function App() {
 
@@ -33,6 +34,7 @@ function App() {
           <Route path='cart' element={<Cart />} />
           <Route path='transactions' element={<Transactions />} />
           <Route path='transactions/:transactionId' element={<TransactionDetails />} />
+          <Route path='transactions/:transactionId/receipt' element={<TransactionReceipt />} />
           <Route path='settings' element={<Settings />} />
         </Route>
 

@@ -81,9 +81,9 @@ const Transactions = () => {
                     <FaEye />
                   </Link>
 
-                  <button class="text-gray-700 hover:text-black">
+                  <Link to={`${item._id}/receipt`} class="text-gray-700 hover:text-black">
                     <FaDownload />
-                  </button>
+                  </Link>
                 </td>
               </tr>
             ))}
