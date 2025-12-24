@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 const AuthenticatedLayout = () => {
   const baseUrl = "https://pos-inventory-api.vercel.app";
   const token = localStorage.getItem("token");
+  const [isSideBarOpen, setIsSideBarOpen] = useState(false)
 
   const [cartCount, setCartCount] = useState(0);
 
@@ -18,13 +19,9 @@ const AuthenticatedLayout = () => {
       },
     });
 
-    const items =
-      res.data?.data?.items ||
-      res.data?.data?.cart?.items ||
-      [];
-
-    setCartCount(items.length);
-    console.log(" Cart count updated:", items.length);
+    const count = res.data?.data?.items?.length || 0;
+    setCartCount(count);
+    console.log(" Cart count updated:", count);
   } catch (error) {
     console.warn(" Cart does not exist yet, defaulting to 0");
     setCartCount(0);
@@ -42,9 +39,13 @@ const AuthenticatedLayout = () => {
 
   return (
     <div className="bg-gray-100 h-dvh">
-      <Header cartCount={cartCount} />
-      <Sidebar />
-      <main className="ml-36 mt-[86px] p-6 relative max-w-[85%]">
+      <Header cartCount={cartCount} 
+      toggleSidebar = {()=>setIsSideBarOpen((prev)=>!prev)}/>
+      <Sidebar
+        isOpen={isSideBarOpen}
+        closeSidebar={() => setIsSideBarOpen(false)}
+      />
+      <main className="lg:ml-36 mt-[86px] p-6 relative lg:max-w-[85%]">
         <Outlet context={{ refreshCartCount: fetchCartCount }} />
       </main>
     </div>

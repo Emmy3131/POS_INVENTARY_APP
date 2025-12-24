@@ -64,8 +64,10 @@ const Dashboard = () => {
       </div>
 
       {/* Sales Trend */}
-      <div className="flex gap-10">
-        <div className="bg-white p-6 rounded-xl shadow-md flex-1">
+      <div className="flex flex-col lg:flex-row gap-10">
+
+        {/* Sales Trend */}
+        <div className="bg-white p-6 rounded-xl shadow-md w-full lg:flex-1">
           <div className="flex justify-between mb-3">
             <h2 className="font-semibold text-lg">Sale’s Trend</h2>
             <p className="text-gray-500">This Month ▼</p>
@@ -76,10 +78,9 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Inventory Alerts + Chart */}
-        <div className="flex gap-5">
-
-          <div className="bg-white p-6 rounded-xl shadow-md">
+        {/* Inventory Alerts */}
+        <div className="w-full lg:w-[380px]">
+          <div className="bg-white p-6 rounded-xl shadow-md w-full">
             <h2 className="font-semibold mb-4 text-lg">Inventory Alerts</h2>
 
             <div className="h-60 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400">
@@ -98,7 +99,9 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+
       </div>
+
     </div>
   )
 }
