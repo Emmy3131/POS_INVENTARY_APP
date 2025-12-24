@@ -309,7 +309,7 @@ const Cart = () => {
       )}
 
       <Model isOpen={orderSummary} title="Order Summary">
-        <div className="relative right-[-20] overflow-x-auto">
+        <div className="overflow-x-auto">
           <div
             onClick={() => setOrderSummary(false)}
             className=" cursor-pointer rounded-full bg-blue-400 p-3 w-[50px] h-[50px] text-center absolute right-0 top-0 flex items-center justify-center"
