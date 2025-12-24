@@ -3,8 +3,9 @@ import MakeSaleCard from "./MaleSaleCard";
 
 const MakeSaleList = ({ products, cart, actionLoadingId }) => {
   return (
-    <div className="flex flex-wrap gap-4">
-      {products.map((product) => (
+    <div >
+     <div className="flex flex-col lg:flex-row gap-4">
+       {products.map((product) => (
         <MakeSaleCard
           key={product._id}
           product={product}          // ✅ PASS PRODUCT
@@ -12,6 +13,7 @@ const MakeSaleList = ({ products, cart, actionLoadingId }) => {
           actionLoadingId={actionLoadingId}
         />
       ))}
+     </div>
     </div>
   );
 };

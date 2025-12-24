@@ -53,7 +53,7 @@ const Transactions = () => {
 
       <h1 className="font-bold mb-6 text-2xl  bg-white p-2 px-4 rounded-xl shadow">TRANSACTIONS</h1>
 
-      <div class="bg-white shadow rounded-t-xl w-full overflow-hidden">
+      <div class="bg-white shadow rounded-t-xl w-full overflow-hidden overflow-x-auto">
         <table class="min-w-full border-collapse text-left">
           <thead class="">
             <tr class="text-gray-600 bg-gray-200">

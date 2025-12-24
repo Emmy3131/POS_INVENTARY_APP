@@ -3,22 +3,22 @@ import Loader from "../components/Loader"
 import { useState } from "react";
 
 const MakeSaleCard = ({ product, cart, actionLoadingId }) => {
-  if (!product) return null; // 🛡 safety
+  if (!product) return null;
 
   const { _id, name, description, price, coverImage } = product;
   const isLoading = actionLoadingId === _id;
 
   return (
-    <div className="bg-white rounded-2xl shadow p-4 w-[250px]">
-      <img
+    <div className="bg-white rounded-2xl shadow p-4 flex flex-col">
+      <div className="m-auto w-[150px]">
+        <img
         src={coverImage}
         alt={name}
-        className="w-full h-40 object-cover rounded-lg mb-4"
+        className="w-full object-cover rounded-lg mb-4"
       />
+      </div>
 
       <h3 className="text-lg font-semibold">{name}</h3>
-      <p className="text-sm text-gray-500">{description}</p>
-
       <div className="flex justify-between items-center mt-3">
         <span className="font-bold text-lg">${price}</span>
 
