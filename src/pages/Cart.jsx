@@ -309,7 +309,7 @@ const Cart = () => {
       )}
 
       <Model isOpen={orderSummary} title="Order Summary">
-        <div className="overflow-x-auto">
+        <div className="">
           <div
             onClick={() => setOrderSummary(false)}
             className=" cursor-pointer rounded-full bg-blue-400 p-3 w-[50px] h-[50px] text-center absolute right-0 top-0 flex items-center justify-center"
@@ -329,7 +329,7 @@ const Cart = () => {
             </div>
 
             {/* PAYMENT OPTIONS */}
-            <div className="flex gap-6 justify-center items-center my-6">
+            <div className="flex lg:flex-row flex-col gap-4 justify-center items-center my-6">
 
               {/* CARD */}
               <label
