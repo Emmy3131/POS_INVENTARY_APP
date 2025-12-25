@@ -174,11 +174,11 @@ const Settings = () => {
                     id="settingsProfilePicture"
                     src={previewImage || user?.photo || "/avatar.png"}
                     alt="Profile"
-                    className="w-24 h-24 rounded-full object-cover border-4 border-white shadow-md"
+                    className="w-24 h-24 shrink-0 rounded-full object-cover border-4 border-white shadow-md"
                   />
 
                   <div>
-                    <h2 id="profileName" className="text-xl font-bold text-gray-800">
+                    <h2 id="profileName" className="text-lg font-bold text-gray-800">
                       {user?.name}
                     </h2>
                     <p id="profilePhone" className="text-gray-600 text-sm">{user?.phone}</p>
