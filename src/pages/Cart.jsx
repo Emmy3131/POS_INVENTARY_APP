@@ -174,7 +174,7 @@ const Cart = () => {
       }
     } catch (error) {
       console.error("Error clearing cart:", error);
-    }finally{
+    } finally {
       setIsLoading(false)
     }
   };
@@ -210,7 +210,7 @@ const Cart = () => {
   }
 
   return (
-    <div>
+    <div className="">
       <h2 className="text-xl font-bold mb-3">Cart</h2>
 
       {isLoading ? (
@@ -267,7 +267,7 @@ const Cart = () => {
                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-100 text-red-600font-semibold hover:bg-red-200 active:scale-95 transition shadow-sm"
               >
                 Clear Cart
-                {isLoading &&<Loader size={5}/>}
+                {isLoading && <Loader size={5} />}
               </button>
 
             </div>
@@ -309,140 +309,122 @@ const Cart = () => {
       )}
 
       <Model isOpen={orderSummary} title="Order Summary">
-        <div className="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative">
-          <div
+        <div className="relative">
+
+          {/* CLOSE BUTTON */}
+          <button
             onClick={() => setOrderSummary(false)}
-            className=" cursor-pointer rounded-full bg-blue-400 p-3 w-[50px] h-[50px] text-center absolute right-0 top-0 flex items-center justify-center"
+            className="absolute right-3 top-3 z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
           >
-            <FaTimes className="fa-solid text-[19px] font-bold hover:text-gray-500 fa-arrow-right" />
+            <FaTimes />
+          </button>
 
-          </div>
+          {/* CONTENT */}
+          <div className="mt-12">
 
-          <div className="bg-white rounded-2xl shadow-xl p-4 w-full overflow-y-scroll">
-
-            {/* Title */}
-            <div className="text-center mt-3">
-              <h2 className="text-3xl font-bold text-gray-900">Payment Method</h2>
-              <p className="text-[19px] text-gray-500 font-medium my-4">
+            {/* TITLE */}
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Payment Method</h2>
+              <p className="text-gray-500 mt-2">
                 Please Select Your Payment Method
               </p>
             </div>
 
             {/* PAYMENT OPTIONS */}
-            <div className="flex lg:flex-row flex-col gap-4 justify-center items-center my-6">
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-6">
 
               {/* CARD */}
               <label
-                className={`flex flex-col items-center w-[180px] bg-white shadow-md rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg ${paymentMethod === 'card' ? 'bg-green-100 border-2 border-green-600 ' : "hover:bg-green-200"}`}
+                className={`flex flex-col items-center w-full lg:w-[180px] bg-white shadow-md rounded-2xl p-4 cursor-pointer transition 
+          ${paymentMethod === 'card' ? 'bg-green-100 border-2 border-green-600' : 'hover:bg-green-200'}`}
               >
-                <div className="text-[50px] text-green-600">
-                  <FaCreditCard />
-                </div>
+                <FaCreditCard className="text-5xl text-green-600" />
 
                 <InputField
+                  type="radio"
                   name="paymentMethod"
                   value="card"
-                  type="radio"
-                  checked={paymentMethod === "card"}
+                  checked={paymentMethod === 'card'}
                   onChange={handlePaymentMethodChange}
                   className="hidden"
-                  isRequired={true}
                 />
 
-                <span className="mt-2 font-semibold text-gray-700">
-                  Card
-                </span>
+                <span className="mt-2 font-semibold">Card</span>
               </label>
 
               {/* CASH */}
               <label
-                className={`flex flex-col items-center w-[180px] bg-white shadow-md rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg ${paymentMethod === 'cash' ? 'bg-green-100 border-2 border-green-600 ' : "hover:bg-green-200"}`}
+                className={`flex flex-col items-center w-full lg:w-[180px] bg-white shadow-md rounded-2xl p-4 cursor-pointer transition 
+          ${paymentMethod === 'cash' ? 'bg-green-100 border-2 border-green-600' : 'hover:bg-green-200'}`}
               >
-                <div className="text-[50px] text-green-600">
-                  <FaMoneyBill />
-                </div>
+                <FaMoneyBill className="text-5xl text-green-600" />
 
                 <InputField
+                  type="radio"
                   name="paymentMethod"
                   value="cash"
-                  type="radio"
-                  checked={paymentMethod === "cash"}
+                  checked={paymentMethod === 'cash'}
                   onChange={handlePaymentMethodChange}
                   className="hidden"
-                  isRequired={true}
                 />
 
-                <span className="mt-2 font-semibold text-gray-700">
-                  Cash
-                </span>
+                <span className="mt-2 font-semibold">Cash</span>
               </label>
 
-              {/* BANK TRANSFER */}
+              {/* TRANSFER */}
               <label
-                className={`flex flex-col items-center w-[180px] bg-white shadow-md rounded-2xl p-4 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-lg ${paymentMethod === 'transfer' ? 'bg-green-100 border-2 border-green-600 ' : "hover:bg-green-200"}`}
+                className={`flex flex-col items-center w-full lg:w-[180px] bg-white shadow-md rounded-2xl p-4 cursor-pointer transition 
+          ${paymentMethod === 'transfer' ? 'bg-green-100 border-2 border-green-600' : 'hover:bg-green-200'}`}
               >
-                <div className="text-[50px] text-green-600">
-                  <FaBuilding />
-                </div>
+                <FaBuilding className="text-5xl text-green-600" />
 
                 <InputField
-                  name="paymentMethod"
-                  value="bank transfer"
                   type="radio"
-                  checked={paymentMethod === "transfer"}
+                  name="paymentMethod"
+                  value="transfer"
+                  checked={paymentMethod === 'transfer'}
                   onChange={handlePaymentMethodChange}
                   className="hidden"
-                  isRequired={true}
                 />
 
-                <span className="mt-2 font-semibold text-gray-700">
-                  Bank Transfer
-                </span>
+                <span className="mt-2 font-semibold">Bank Transfer</span>
               </label>
-
             </div>
 
+            {/* FORM */}
+            <form onSubmit={handlePaymentSubmit} className="space-y-4">
 
-            {/* CUSTOMER NAME */}
-
-            <form onSubmit={handlePaymentSubmit}>
               <InputField
                 label="Customer Name"
                 placeholder="Customer Name"
-                name="customerName"
-                isRequired={true}
-                readOnly={false}
-                onChange={(e) => setCustomerName(e.target.value)}
                 value={customerName}
-
+                onChange={(e) => setCustomerName(e.target.value)}
+                isRequired
               />
 
-
-
-              {
-                paymentMethod === 'cash' &&
+              {paymentMethod === 'cash' && (
                 <InputField
                   label="Amount Paid"
-                  name="amount"
                   type="number"
                   value={amountPaid}
-                  onChange={(e => setAmountPaid(e.target.value))}
-
+                  onChange={(e) => setAmountPaid(e.target.value)}
+                  isRequired
                 />
-              }
+              )}
 
-              {/* pay button */}
               <button
                 type="submit"
-                className="outline-none py-2 rounded-lg bg-green-800 mt-5 text-white hover:bg-green-700 shadow-md w-full text-center transition font-bold text-2xl"
+                className="w-full py-3 bg-green-700 text-white rounded-lg font-bold text-xl hover:bg-green-600 transition"
               >
                 Pay Now
               </button>
+
             </form>
 
           </div>
         </div>
       </Model>
+
 
     </div >
   );
