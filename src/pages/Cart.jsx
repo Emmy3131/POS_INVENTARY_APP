@@ -318,7 +318,7 @@ const Cart = () => {
 
           </div>
 
-          <div className="bg-white rounded-2xl shadow-xl p-4 w-full">
+          <div className="bg-white rounded-2xl shadow-xl p-4 w-full overflow-y-scroll">
 
             {/* Title */}
             <div className="text-center mt-3">
