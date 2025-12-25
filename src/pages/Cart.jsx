@@ -309,7 +309,7 @@ const Cart = () => {
       )}
 
       <Model isOpen={orderSummary} title="Order Summary">
-        <div className="">
+        <div className="bg-white rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative">
           <div
             onClick={() => setOrderSummary(false)}
             className=" cursor-pointer rounded-full bg-blue-400 p-3 w-[50px] h-[50px] text-center absolute right-0 top-0 flex items-center justify-center"
