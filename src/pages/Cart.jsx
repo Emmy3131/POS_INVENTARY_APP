@@ -320,7 +320,7 @@ const Cart = () => {
           </button>
 
           {/* CONTENT */}
-          <div className="mt-12">
+          <div className="">
 
             {/* TITLE */}
             <div className="text-center mb-6">
