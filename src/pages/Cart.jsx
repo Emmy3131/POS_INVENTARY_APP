@@ -314,7 +314,7 @@ const Cart = () => {
            <div className="relative top-0 left-0 right-0">
              <button
             onClick={() => setOrderSummary(false)}
-            className="absolute right-[-5] t0p-[-5] z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+            className="absolute right-[-10] t0p-[-30] z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
           >
             <FaTimes />
           </button>
