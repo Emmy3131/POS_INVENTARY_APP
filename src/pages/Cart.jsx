@@ -314,7 +314,7 @@ const Cart = () => {
           {/* CLOSE BUTTON */}
           <button
             onClick={() => setOrderSummary(false)}
-            className="absolute right-3 top-3 z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+            className="absolute right-1 t0p-0 z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
           >
             <FaTimes />
           </button>
