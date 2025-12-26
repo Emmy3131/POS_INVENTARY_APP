@@ -186,9 +186,12 @@ export const UserStat = ({ }) => {
         </div>
       </div>
 
-      <Modal isOpen={addUser} title="Add New User">
-        <h2 className="text-2xl font-bold text-gray-800 mb-2">Add A New User</h2>
-        <form className="space-y-4 " onSubmit={handleSubmitUser}>
+      <Modal
+        isOpen={addUser}
+        title="Add New User"
+        onClose={handleCancelAddUserModel}
+      >
+        <form className="space-y-4" onSubmit={handleSubmitUser}>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -196,8 +199,7 @@ export const UserStat = ({ }) => {
               label="User Name"
               placeholder="User name"
               name="name"
-              required="required"
-
+              required
             />
 
             <InputField
@@ -220,15 +222,16 @@ export const UserStat = ({ }) => {
               type="password"
               name="password"
             />
+
             <InputField
               label="Confirm password"
-              placeholder="Conform password"
+              placeholder="Confirm password"
               type="password"
               name="passwordConfirm"
             />
 
             <SelectField
-              label='Select User role'
+              label="Select User role"
               name="role"
               options={[
                 { value: "cashier", label: "Cashier" },
@@ -244,27 +247,30 @@ export const UserStat = ({ }) => {
 
           </div>
 
-
+          {/* ACTION BUTTONS */}
           <div className="flex justify-end space-x-4 pt-4">
-            <button onClick={handleCancelAddUserModel} id="addProductCardCancelBtn" type="button"
-              className="px-4 py-2 rounded-full  bg-gray-100 text-gray-700 hover:bg-gray-200 transition">
+            <button
+              type="button"
+              onClick={handleCancelAddUserModel}
+              className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
+            >
               Cancel
             </button>
 
-            <div>
-              <button
-                type="submit"
-                disabled={loading}
-                className="flex items-center  space-x-2 px-4 py-2 rounded-full bg-green-600 text-white hover:bg-green-700 shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {loading && <Loader size={5} />}
-                <span className="text-lg">＋</span>
-                <span>Submit</span>
-              </button>
-            </div>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex items-center space-x-2 px-4 py-2 rounded-full bg-green-600 text-white hover:bg-green-700 disabled:opacity-50"
+            >
+              {loading && <Loader size={5} />}
+              <span className="text-lg">＋</span>
+              <span>Submit</span>
+            </button>
           </div>
+
         </form>
       </Modal>
+
 
       {/* Table */}
       <div className="overflow-x-auto">
