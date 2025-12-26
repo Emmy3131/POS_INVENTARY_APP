@@ -312,7 +312,7 @@ const Cart = () => {
         {/* CLOSE BUTTON */}
 
 
-        <div className="relative top-[-40]">
+        <div className="relative top-[-40px] right-[-50px]">
           <button
             onClick={() => setOrderSummary(false)}
             className="absolute right-5 top-0 z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
