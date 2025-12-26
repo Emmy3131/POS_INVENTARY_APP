@@ -1,15 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
+
 
 const Sidebar = ({ isOpen, closeSideBar }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const activeUser = JSON.parse(localStorage.getItem("user"));
 
-  useEffect(() => {
-    closeSideBar();
-  }, [pathname]);
-
+  
   const adminLinks = [
     { to: "/manage/dashboard", icon: "dashboard", label: "Dashboard" },
     { to: "/manage/users", icon: "person", label: "Users" },
