@@ -310,16 +310,18 @@ const Cart = () => {
 
       <Model isOpen={orderSummary} title="Order Summary">
         {/* CLOSE BUTTON */}
-        
-          
-             <button
+
+
+        <div className="relative">
+          <button
             onClick={() => setOrderSummary(false)}
-            className="relative right-5 t0p-0 z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
+            className="absolute right-5 top-0 z-20 bg-blue-500 text-white w-10 h-10 rounded-full flex items-center justify-center"
           >
             <FaTimes />
           </button>
-        
-       
+        </div>
+
+
         <div className="overflow-y-auto">
           {/* CONTENT */}
           <div className="">
