@@ -322,7 +322,7 @@ const Cart = () => {
         </div>
 
 
-        <div className="overflow-y-auto">
+        <div className="overflow-y-auto h-screen">
           {/* CONTENT */}
           <div className="">
 
