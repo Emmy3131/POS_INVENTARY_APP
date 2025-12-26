@@ -186,16 +186,11 @@ export const UserStat = ({ }) => {
         </div>
       </div>
 
-      <Modal
-        isOpen={addUser}
-        title="Add New User"
-        onClose={handleCancelAddUserModel}
-      >
+      <Modal isOpen={addUser} onClose={handleCancelAddUserModel}>
         {/* SCROLL CONTAINER */}
         <div className="relative max-h-[80vh] overflow-y-auto p-4">
-
+          <h1 className="text-center font-bold text-lg lg:text-xl">Add New User</h1>
           <form onSubmit={handleSubmitUser} className="space-y-4">
-
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
               <InputField
