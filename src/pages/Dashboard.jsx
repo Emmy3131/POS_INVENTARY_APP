@@ -4,18 +4,14 @@ const activeUser = JSON.parse(localStorage.getItem("user"));
 
 
 const Dashboard = () => {
-  const isAdmin = activeUser?.role === "admin";
-  const isCashier = activeUser?.role === "cashier"
+  const isAdmin = activeUser.role === "admin"
+  const isCashier = activeUser.role === "cashier"
   return (
     <div>
 
       {/* Header */}
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Dashboard overview</h1>
-
-        <div className="bg-white px-4 py-2 rounded-xl shadow-md text-blue-600 font-semibold">
-          18:01pm | 05/09/2025
-        </div>
+        <h1 className="text-lg lg:text-2xl font-bold">Dashboard overview</h1>
       </div>
 
       {/* Overview Cards */}

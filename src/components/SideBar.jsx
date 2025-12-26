@@ -1,9 +1,14 @@
 import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const Sidebar = ({ isOpen, closeSideBar }) => {
   const location = useLocation();
   const pathname = location.pathname;
   const activeUser = JSON.parse(localStorage.getItem("user"));
+
+  useEffect(() => {
+    closeSideBar();
+  }, [pathname]);
 
   const adminLinks = [
     { to: "/manage/dashboard", icon: "dashboard", label: "Dashboard" },
@@ -25,15 +30,15 @@ const Sidebar = ({ isOpen, closeSideBar }) => {
 
   return (
     <>
-      {/* 🔴 Overlay (mobile only) */}
+      {/* Overlay (mobile only) */}
       {isOpen && (
         <div
           onClick={closeSideBar}
-          className="fixed inset-0 bg-black/40 lg:hidden"
+          className="fixed inset-0 bg-black/40 lg:hidden z-40"
         />
       )}
 
-      {/* 🟢 Sidebar */}
+      {/* Sidebar */}
       <aside
         className={`
           fixed top-[86px] left-0 h-[calc(100vh-86px)] w-36 bg-white
