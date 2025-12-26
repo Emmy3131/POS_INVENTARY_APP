@@ -191,7 +191,8 @@ export const UserStat = ({ }) => {
         title="Add New User"
         onClose={handleCancelAddUserModel}
       >
-        <form className="space-y-4" onSubmit={handleSubmitUser}>
+        <div className="relative">
+          <form className="space-y-4" onSubmit={handleSubmitUser}>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
@@ -269,6 +270,7 @@ export const UserStat = ({ }) => {
           </div>
 
         </form>
+        </div>
       </Modal>
 
 
