@@ -191,7 +191,7 @@ export const UserStat = ({ }) => {
         title="Add New User"
         onClose={handleCancelAddUserModel}
       >
-        <div className="relative">
+        <div className="relative overflow-y-scroll">
           <form className="space-y-4" onSubmit={handleSubmitUser}>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
