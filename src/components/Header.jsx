@@ -2,7 +2,7 @@ import { IoCartOutline } from "react-icons/io5";
 import OIP from "../assets/images/OIP.webp";
 import { IoIosArrowDown } from "react-icons/io";
 import { FaBars } from "react-icons/fa"
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +16,7 @@ function Header({ cartCount, toggleSidebar }) {
   const handleDropdown = () => { setIsOpen(!isOpen); };
   const user = JSON.parse(localStorage.getItem('user'))
   const navigate = useNavigate();
+  const dropdownRef = useRef(null)
   const baseUrl = "https://pos-inventory-api.vercel.app";
 
   const handleLogout = async () => {
@@ -29,17 +30,35 @@ function Header({ cartCount, toggleSidebar }) {
     }
   };
 
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(e.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+
 
   return (
     <div
       className="fixed w-full z-20 top-0 left-0 bg-white shadow-md flex items-center justify-between px-6 py-[18px] rounded-xl">
       <div className="text-2xl font-bold text-gray-700 flex items-center space-x-3">
-         <button
-            onClick={toggleSidebar}
-            className="lg:hidden text-2xl text-gray-700"
-          >
-            <FaBars />
-          </button>
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden text-2xl text-gray-700"
+        >
+          <FaBars />
+        </button>
         <div
           className="text-2xl text-green-600 bg-black p-2 w-[50px] h-[50px] flex items-center justify-center rounded-full">
           <i className="fa-solid fa-cash-register"></i>
@@ -71,12 +90,12 @@ function Header({ cartCount, toggleSidebar }) {
 
         </Link>
 
-        <div className="relative inline-block text-left">
+        <div ref={dropdownRef} className="relative inline-block text-left">
           {/* Trigger */}
           <span onClick={() => handleDropdown()} id="profile-btn" className="flex gap-2 items-center cursor-pointer">
             <img id="userProfilePic" className="w-[30px] h-[30px] rounded-full" src={user && user.photo} alt="user" />
             <p className="hidden lg:block text-sm font-medium truncate whitespace-nowrap m-w-[30px]" id="userName">{user && user.name}</p>
-            <IoIosArrowDown  />
+            <IoIosArrowDown />
           </span>
 
           {/* Dropdown Menu  */}
@@ -84,24 +103,27 @@ function Header({ cartCount, toggleSidebar }) {
             <div id="dropdown-menu"
               className=" absolute text-center right-[5px]  mt-[10px] w-30 bg-white rounded-lg shadow-lg border-0">
               <div className="py-2">
-                <Link to="/manage/settings" id="profileLink">
+                <Link to="/manage/settings" id="profileLink" onClick={() => setIsOpen(false)}>
                   <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">Profile</span>
                 </Link>
-                <div onClick={handleLogout}>
-                  <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
-                    Logout
-                    {loading && <Loader size={5} />}
-                  </span>
+                <div onClick={() => {
+                  setIsOpen(false);
+                  handleLogout();}}
+                  >
+                    <span className="block px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer">
+                      Logout
+                      {loading && <Loader size={5} />}
+                    </span>
                 </div>
-              </div>
+            </div>
             </div>
           )}
-        </div>
-
       </div>
-      {/* cart model start */}
 
     </div>
+      {/* cart model start */ }
+
+    </div >
   )
 }
 export default Header
