@@ -320,7 +320,7 @@ const Cart = () => {
           </button>
         
        
-        <div className="relative overflow-y-auto">
+        <div className="overflow-y-auto">
           {/* CONTENT */}
           <div className="">
 
