@@ -2,15 +2,12 @@ const Modal = ({ isOpen, onClose, title, children }) => {
   return (
     isOpen ? (
       <div id="addProductContainer" className=" relative
-          w-[95%]
-          max-w-3xl
-          max-h-[90vh]
-          bg-white
+          w-full
+          max-h-[80vh]
           rounded-2xl
           shadow-xl
           flex
           flex-col
-          overflow-hidden
         bg-black/50 
           bg-opacity-50 z-20">
 
