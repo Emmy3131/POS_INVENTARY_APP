@@ -191,87 +191,89 @@ export const UserStat = ({ }) => {
         title="Add New User"
         onClose={handleCancelAddUserModel}
       >
-        <div className=" space-y-6">
-          <form className="max-h-[80vh] overflow-y-auto p-1" onSubmit={handleSubmitUser}>
+        {/* SCROLL CONTAINER */}
+        <div className="relative max-h-[80vh] overflow-y-auto p-4">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <form onSubmit={handleSubmitUser} className="space-y-4">
 
-            <InputField
-              label="User Name"
-              placeholder="User name"
-              name="name"
-              required
-            />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-            <InputField
-              label="Email"
-              placeholder="user email"
-              type="email"
-              name="email"
-            />
+              <InputField
+                label="User Name"
+                placeholder="User name"
+                name="name"
+                required
+              />
 
-            <InputField
-              label="Phone Number"
-              placeholder="phone number"
-              type="number"
-              name="phone"
-            />
+              <InputField
+                label="Email"
+                placeholder="user email"
+                type="email"
+                name="email"
+              />
 
-            <InputField
-              label="Password"
-              placeholder="Input password"
-              type="password"
-              name="password"
-            />
+              <InputField
+                label="Phone Number"
+                placeholder="phone number"
+                type="number"
+                name="phone"
+              />
 
-            <InputField
-              label="Confirm password"
-              placeholder="Confirm password"
-              type="password"
-              name="passwordConfirm"
-            />
+              <InputField
+                label="Password"
+                placeholder="Input password"
+                type="password"
+                name="password"
+              />
 
-            <SelectField
-              label="Select User role"
-              name="role"
-              options={[
-                { value: "cashier", label: "Cashier" },
-                { value: "admin", label: "Admin" }
-              ]}
-            />
+              <InputField
+                label="Confirm password"
+                placeholder="Confirm password"
+                type="password"
+                name="passwordConfirm"
+              />
 
-            <InputField
-              label="Profile Image"
-              type="file"
-              name="photo"
-            />
+              <SelectField
+                label="Select User role"
+                name="role"
+                options={[
+                  { value: "cashier", label: "Cashier" },
+                  { value: "admin", label: "Admin" }
+                ]}
+              />
 
-          </div>
+              <InputField
+                label="Profile Image"
+                type="file"
+                name="photo"
+              />
+            </div>
 
-          {/* ACTION BUTTONS */}
-          <div className="flex justify-end space-x-4 pt-4">
-            <button
-              type="button"
-              onClick={handleCancelAddUserModel}
-              className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
-            >
-              Cancel
-            </button>
+            {/* ACTION BUTTONS */}
+            <div className="flex justify-end space-x-4 pt-6">
+              <button
+                type="button"
+                onClick={handleCancelAddUserModel}
+                className="px-4 py-2 rounded-full bg-gray-100 text-gray-700 hover:bg-gray-200"
+              >
+                Cancel
+              </button>
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="flex items-center space-x-2 px-4 py-2 rounded-full bg-green-600 text-white hover:bg-green-700 disabled:opacity-50"
-            >
-              {loading && <Loader size={5} />}
-              <span className="text-lg">＋</span>
-              <span>Submit</span>
-            </button>
-          </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="flex items-center space-x-2 px-4 py-2 rounded-full bg-green-600 text-white hover:bg-green-700 disabled:opacity-50"
+              >
+                {loading && <Loader size={5} />}
+                <span className="text-lg">＋</span>
+                <span>Submit</span>
+              </button>
+            </div>
 
-        </form>
+          </form>
         </div>
       </Modal>
+
 
 
       {/* Table */}
