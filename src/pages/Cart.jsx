@@ -309,7 +309,7 @@ const Cart = () => {
       )}
 
       <Model isOpen={orderSummary} title="Order Summary">
-        {/* CLOSE BUTTON */}
+       
 
         
     
