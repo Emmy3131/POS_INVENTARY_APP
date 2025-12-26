@@ -309,7 +309,7 @@ const Cart = () => {
       )}
 
       <Model isOpen={orderSummary} title="Order Summary">
-        <div className="relative">
+        <div className="relative overflow-y-auto">
 
           {/* CLOSE BUTTON */}
           <button
@@ -323,7 +323,7 @@ const Cart = () => {
           <div className="">
 
             {/* TITLE */}
-            <div className="text-center mb-6">
+            <div className="text-center mb-4">
               <h2 className="text-2xl font-bold text-gray-900">Payment Method</h2>
               <p className="text-gray-500 mt-2">
                 Please Select Your Payment Method
@@ -331,7 +331,7 @@ const Cart = () => {
             </div>
 
             {/* PAYMENT OPTIONS */}
-            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-6">
+            <div className="flex flex-col lg:flex-row gap-4 justify-center items-center mb-4">
 
               {/* CARD */}
               <label
